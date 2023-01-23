@@ -1,0 +1,18 @@
+<h3>以下の内容で、送信する。</h3>
+
+<%= form_with(model: @blog, local: true) do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :description %>
+  <p>タイトル:<%= @blog.title %></p>
+  <p>本文:<%= @blog.description %></p>
+  <%= form.submit  "登録する" %>
+  <%= form.submit "戻る", name: 'back'  %>
+<% end %>
+
+<%= link_to '戻る', :back %>
+
+# そこで、送られてきた値は保持するが表示はしないform.hidden_fieldを使用して、入力フォームを生成せず、
+# 新規作成画面から送られてきた値を、そのままconfirmアクションに渡すようにします。
+# また、それとは別に確認用の値を表示させるために、変数をそのまま出力するようにします。
+# `hidden_field`により、postメソッド実行時に`form_with do ~ end`に設定した値をリクエストパラメータに設定できる
+

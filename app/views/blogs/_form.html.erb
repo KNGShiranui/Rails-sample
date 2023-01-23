@@ -1,0 +1,30 @@
+#↓のコードは、引数がレコードに存在しない場合、createアクションへ送信する引数がレコードに存在している場合、updateアクションへ送信する
+<%= form_with(model: @blog, local: true, url: confirm_blogs_path ) do |form| %>
+  
+
+  <% if @blog.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+    <ul>
+
+    <% @blog.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+  <div class="blog_title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div> #divタグで囲んでいるのは改行のため。これを入れないと一列にならんでしまう。
+
+  <div class="blog_content">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "ブログ一覧画面にもどる", blogs_path %>

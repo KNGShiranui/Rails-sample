@@ -1,0 +1,26 @@
+<%= form_with(model: @blog, local: true,  url: confirm_blogs_path) do |form| %>
+
+  <% if @blog.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+    <ul>
+
+    <% @blog.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+  <div class="blog_title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div> #divタグで囲んでいるのは改行のため。これを淹れないと一列にならんでしまう。
+
+  <div class="blog_content">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+  <%= form.submit %>
+<% end %>
